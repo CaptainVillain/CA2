@@ -5,80 +5,55 @@
  */
 package entity;
 
-import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-/**
- *
- * @author The Overlord
- */
-@Entity
-public class PersonDTO implements Serializable
-{
+public class PersonDTO {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String email;
     private String firstname;
     private String lastname;
 
-    public PersonDTO(String email, String firstname, String lastname)
-    {
+    public PersonDTO(String email, String firstname, String lastname) {
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
     }
 
-    
-    public Long getId()
-    {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id)
-    {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getFirstname()
-    {
+    public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstname(String firstname)
-    {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
-    public String getLastname()
-    {
+    public String getLastname() {
         return lastname;
     }
 
-    public void setLastname(String lastname)
-    {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 5;
         hash = 23 * hash + Objects.hashCode(this.id);
         hash = 23 * hash + Objects.hashCode(this.email);
@@ -88,46 +63,35 @@ public class PersonDTO implements Serializable
     }
 
     @Override
-    public boolean equals(Object obj)
-    {
-        if (this == obj)
-        {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (obj == null)
-        {
+        if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass())
-        {
+        if (getClass() != obj.getClass()) {
             return false;
         }
         final PersonDTO other = (PersonDTO) obj;
-        if (!Objects.equals(this.email, other.email))
-        {
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
-        if (!Objects.equals(this.firstname, other.firstname))
-        {
+        if (!Objects.equals(this.firstname, other.firstname)) {
             return false;
         }
-        if (!Objects.equals(this.lastname, other.lastname))
-        {
+        if (!Objects.equals(this.lastname, other.lastname)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id))
-        {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "PersonDTO{" + "id=" + id + ", email=" + email + ", firstname=" + firstname + ", lastname=" + lastname + '}';
     }
 
-
-    
 }

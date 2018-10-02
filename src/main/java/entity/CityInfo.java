@@ -19,8 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "CITYINFO")
-public class CityInfo implements Serializable
-{
+public class CityInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,76 +29,62 @@ public class CityInfo implements Serializable
     private String city;
     @OneToMany
     private Address address;
-    
-    public CityInfo()
-    {
-        
+
+    public CityInfo() {
     }
 
-    public CityInfo(String zipCode, String city)
-    {
+    public CityInfo(String zipCode, String city) {
         this.zipCode = zipCode;
         this.city = city;
     }
 
-    public Long getId()
-    {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id)
-    {
+    public void setId(Long id) {
         this.id = id;
     }
-    
-    public String getZipCode()
-    {
+
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode)
-    {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
-    public String getCity()
-    {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(String city)
-    {
+    public void setCity(String city) {
         this.city = city;
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         int hash = 0;
         hash += (getId() != null ? getId().hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CityInfo))
-        {
+        if (!(object instanceof CityInfo)) {
             return false;
         }
         CityInfo other = (CityInfo) object;
-        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id)))
-        {
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "CityInfo{" + "id=" + id + ", zipCode=" + zipCode + ", city=" + city + '}';
     }
-    
+
 }

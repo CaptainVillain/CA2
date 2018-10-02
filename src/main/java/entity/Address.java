@@ -31,38 +31,54 @@ public class Address implements Serializable
     @ManyToOne
     private CityInfo city;
     
-    public Address()
-    {
-        
-    }
+    public Address(){}
 
-    public Address(String street, String additionalInfo)
-    {
+    public Address(String street, String additionalInfo){
         this.street = street;
         this.additionalInfo = additionalInfo;
     }
 
-    public Long getId()
-    {
+    public Long getId(){
         return id;
     }
 
-    public void setId(Long id)
-    {
+    public void setId(Long id){
         this.id = id;
     }
 
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public CityInfo getCity() {
+        return city;
+    }
+
+    public void setCity(CityInfo city) {
+        this.city = city;
+    }
+   
     @Override
-    public int hashCode()
-    {
+    public int hashCode(){
         int hash = 0;
         hash += (getId() != null ? getId().hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object)
-    {
+    public boolean equals(Object object){
         // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Address))
         {
@@ -77,41 +93,7 @@ public class Address implements Serializable
     }
 
     @Override
-    public String toString()
-    {
+    public String toString(){
         return "Address{" + "id=" + id + ", street=" + street + ", additionalInfo=" + additionalInfo + ", city=" + city + '}';
     }
-
-    
-
-    public String getStreet()
-    {
-        return street;
-    }
-
-    public void setStreet(String street)
-    {
-        this.street = street;
-    }
-
-    public String getAdditionalInfo()
-    {
-        return additionalInfo;
-    }
-
-    public void setAdditionalInfo(String additionalInfo)
-    {
-        this.additionalInfo = additionalInfo;
-    }
-
-    public CityInfo getCity()
-    {
-        return city;
-    }
-
-    public void setCity(CityInfo city)
-    {
-        this.city = city;
-    }
-    
 }
