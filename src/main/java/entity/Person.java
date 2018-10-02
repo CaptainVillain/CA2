@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -33,6 +34,8 @@ public class Person implements Serializable
     private List<Hobby> hobbies;
     @OneToMany
     private List<Phone> phones;
+    @ManyToOne
+    private Address address;
 
     public Long getId()
     {
@@ -128,6 +131,16 @@ public class Person implements Serializable
     public String toString()
     {
         return "Person{" + "id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", hobbies=" + hobbies + ", phones=" + phones + '}';
+    }
+
+    public Address getAddress()
+    {
+        return address;
+    }
+
+    public void setAddress(Address address)
+    {
+        this.address = address;
     }
 
     
