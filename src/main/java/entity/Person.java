@@ -6,7 +6,9 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,8 +34,9 @@ public class Person implements Serializable
     private String lastName;
     @ManyToMany
     private List<Hobby> hobbies;
-    @OneToMany
-    private List<Phone> phones;
+    
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    private List<Phone> phones = new ArrayList();
     @ManyToOne
     private Address address;
 
@@ -81,17 +84,6 @@ public class Person implements Serializable
     {
         this.hobbies = hobbies;
     }
-
-    public List<Phone> getPhones()
-    {
-        return phones;
-    }
-
-    public void setPhones(List<Phone> phones)
-    {
-        this.phones = phones;
-    }
-
     public Person(String firstName, String lastName)
     {
         this.firstName = firstName;
@@ -141,6 +133,20 @@ public class Person implements Serializable
     public void setAddress(Address address)
     {
         this.address = address;
+    }
+
+    public List<Phone> getPhones()
+    {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones)
+    {
+        this.phones = phones;
+    }
+    public void addPhones(Phone ph)
+    {
+        phones.add(ph);
     }
 
     

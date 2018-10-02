@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -25,7 +26,9 @@ public class Phone implements Serializable
     private Long id;
     private String number;
     private String description;
-
+    
+    @ManyToOne
+    private Person person;
     public Long getId()
     {
         return id;
@@ -87,5 +90,16 @@ public class Phone implements Serializable
     {
         this.description = description;
     }
+
+    public Person getPerson()
+    {
+        return person;
+    }
+
+    public void setPerson(Person p)
+    {
+        this.person = p;
+    }
+    
     
 }
