@@ -63,8 +63,10 @@ public class CityInfo implements Serializable
     @Override
     public String toString()
     {
-        return "entity.CityInfo[ id=" + getId() + " ]";
+        return "CityInfo{" + "id=" + id + ", zipCode=" + zipCode + ", city=" + city + '}';
     }
+
+    
 
     public String getZipCode()
     {

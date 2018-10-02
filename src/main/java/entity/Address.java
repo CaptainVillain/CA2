@@ -66,8 +66,10 @@ public class Address implements Serializable
     @Override
     public String toString()
     {
-        return "entity.Address[ id=" + getId() + " ]";
+        return "Address{" + "id=" + id + ", street=" + street + ", additionalInfo=" + additionalInfo + ", city=" + city + '}';
     }
+
+    
 
     public String getStreet()
     {

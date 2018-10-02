@@ -127,7 +127,9 @@ public class Person implements Serializable
     @Override
     public String toString()
     {
-        return "entity.Person[ id=" + id + " ]";
+        return "Person{" + "id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", hobbies=" + hobbies + ", phones=" + phones + '}';
     }
+
+    
     
 }

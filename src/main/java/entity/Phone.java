@@ -63,8 +63,10 @@ public class Phone implements Serializable
     @Override
     public String toString()
     {
-        return "entity.Phone[ id=" + getId() + " ]";
+        return "Phone{" + "id=" + id + ", number=" + number + ", description=" + description + '}';
     }
+
+    
 
     public String getNumber()
     {
