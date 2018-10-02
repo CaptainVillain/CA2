@@ -11,12 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Kristian
  */
 @Entity
+@Table(name = "CITYINFO")
 public class CityInfo implements Serializable
 {
 

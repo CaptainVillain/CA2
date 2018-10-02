@@ -16,12 +16,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Kristian
  */
 @Entity
+@Table(name = "PERSON")
 public class Person implements Serializable
 {
 
@@ -120,9 +122,15 @@ public class Person implements Serializable
     {
         this.phones = phones;
     }
+    
     public void addPhones(Phone ph)
     {
         phones.add(ph);
+    }
+    
+    public void addHobby(Hobby h)
+    {
+        hobbies.add(h);
     }
 
     @Override
