@@ -10,6 +10,7 @@ import entity.PersonDTO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -34,7 +35,7 @@ public class FacadePerson
         try
         {
             em.getTransaction().begin();
-            p = em.find(Person.class, p.get());
+            p = em.find(Person.class, id);
             em.getTransaction().commit();
             return p;
         }
@@ -44,16 +45,17 @@ public class FacadePerson
         }
     }
 
-    public List<Person> getPersons()
+    public List<PersonDTO> getPersons()
     {
         EntityManager em = emf.createEntityManager();
 
-        List<Person> persons = null;
+        List<PersonDTO> persons = null;
 
         try
         {
             em.getTransaction().begin();
-            persons = em.createQuery("Select p from Person p").getResultList();
+            TypedQuery<PersonDTO> query = em.createQuery("Select new entity.PersonDTO(p.email, p.firstname, p.lastname) from Person p", PersonDTO.class);
+            persons = query.getResultList();
             em.getTransaction().commit();
             return persons;
         }
@@ -63,11 +65,11 @@ public class FacadePerson
         }
     }
 
-    public List<Person> getContactInfo()
+    public List<PersonDTO> getContactInfo()
     {
         EntityManager em = emf.createEntityManager();
 
-        List<Person> ci = null;
+        List<PersonDTO> ci = null;
 
         try
         {
