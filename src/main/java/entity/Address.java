@@ -11,12 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Kristian
  */
 @Entity
+@Table(name = "ADDRESS")
 public class Address implements Serializable
 {
 
@@ -28,6 +30,17 @@ public class Address implements Serializable
     private String additionalInfo;
     @ManyToOne
     private CityInfo city;
+    
+    public Address()
+    {
+        
+    }
+
+    public Address(String street, String additionalInfo)
+    {
+        this.street = street;
+        this.additionalInfo = additionalInfo;
+    }
 
     public Long getId()
     {

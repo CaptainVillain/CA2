@@ -16,12 +16,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Kristian
  */
 @Entity
+@Table(name = "PERSON")
 public class Person implements Serializable
 {
 
@@ -39,12 +41,28 @@ public class Person implements Serializable
     private List<Phone> phones = new ArrayList();
     @ManyToOne
     private Address address;
+    
+    public Person()
+    {
+        
+    }
+    
+    public Person(String firstName, String lastName)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public Long getId()
     {
         return id;
     }
-
+    
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+    
     public String getEmail()
     {
         return email;
@@ -84,15 +102,35 @@ public class Person implements Serializable
     {
         this.hobbies = hobbies;
     }
-    public Person(String firstName, String lastName)
+
+    public Address getAddress()
     {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        return address;
     }
 
-    public void setId(Long id)
+    public void setAddress(Address address)
     {
-        this.id = id;
+        this.address = address;
+    }
+
+    public List<Phone> getPhones()
+    {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones)
+    {
+        this.phones = phones;
+    }
+    
+    public void addPhones(Phone ph)
+    {
+        phones.add(ph);
+    }
+    
+    public void addHobby(Hobby h)
+    {
+        hobbies.add(h);
     }
 
     @Override
@@ -124,31 +162,5 @@ public class Person implements Serializable
     {
         return "Person{" + "id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", hobbies=" + hobbies + ", phones=" + phones + '}';
     }
-
-    public Address getAddress()
-    {
-        return address;
-    }
-
-    public void setAddress(Address address)
-    {
-        this.address = address;
-    }
-
-    public List<Phone> getPhones()
-    {
-        return phones;
-    }
-
-    public void setPhones(List<Phone> phones)
-    {
-        this.phones = phones;
-    }
-    public void addPhones(Phone ph)
-    {
-        phones.add(ph);
-    }
-
-    
     
 }
