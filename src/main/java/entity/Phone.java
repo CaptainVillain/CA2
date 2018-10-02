@@ -29,6 +29,18 @@ public class Phone implements Serializable
     
     @ManyToOne
     private Person person;
+    
+    public Phone()
+    {
+        
+    }
+
+    public Phone(String number, String description)
+    {
+        this.number = number;
+        this.description = description;
+    }
+    
     public Long getId()
     {
         return id;
@@ -38,39 +50,7 @@ public class Phone implements Serializable
     {
         this.id = id;
     }
-
-    @Override
-    public int hashCode()
-    {
-        int hash = 0;
-        hash += (getId() != null ? getId().hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object)
-    {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Phone))
-        {
-            return false;
-        }
-        Phone other = (Phone) object;
-        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id)))
-        {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Phone{" + "id=" + id + ", number=" + number + ", description=" + description + '}';
-    }
-
     
-
     public String getNumber()
     {
         return number;
@@ -101,5 +81,34 @@ public class Phone implements Serializable
         this.person = p;
     }
     
+    @Override
+    public int hashCode()
+    {
+        int hash = 0;
+        hash += (getId() != null ? getId().hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object)
+    {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Phone))
+        {
+            return false;
+        }
+        Phone other = (Phone) object;
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id)))
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Phone{" + "id=" + id + ", number=" + number + ", description=" + description + '}';
+    }
     
 }

@@ -29,6 +29,17 @@ public class Hobby implements Serializable
     private String description;
     @ManyToMany
     private List<Person> people;
+    
+    public Hobby()
+    {
+        
+    }
+
+    public Hobby(String name, String description)
+    {
+        this.name = name;
+        this.description = description;
+    }
 
     public Long getId()
     {
@@ -38,6 +49,36 @@ public class Hobby implements Serializable
     public void setId(Long id)
     {
         this.id = id;
+    }
+    
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public List<Person> getPeople()
+    {
+        return people;
+    }
+
+    public void setPeople(List<Person> people)
+    {
+        this.people = people;
     }
 
     @Override
@@ -69,37 +110,5 @@ public class Hobby implements Serializable
     {
         return "Hobby{" + "id=" + id + ", name=" + name + ", description=" + description + ", people=" + people + '}';
     }
-
-    
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
-
-    public List<Person> getPeople()
-    {
-        return people;
-    }
-
-    public void setPeople(List<Person> people)
-    {
-        this.people = people;
-    }
-    
+   
 }

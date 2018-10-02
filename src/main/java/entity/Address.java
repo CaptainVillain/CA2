@@ -28,6 +28,17 @@ public class Address implements Serializable
     private String additionalInfo;
     @ManyToOne
     private CityInfo city;
+    
+    public Address()
+    {
+        
+    }
+
+    public Address(String street, String additionalInfo)
+    {
+        this.street = street;
+        this.additionalInfo = additionalInfo;
+    }
 
     public Long getId()
     {

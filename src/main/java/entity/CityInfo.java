@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -25,6 +26,19 @@ public class CityInfo implements Serializable
     private Long id;
     private String zipCode;
     private String city;
+    @OneToMany
+    private Address address;
+    
+    public CityInfo()
+    {
+        
+    }
+
+    public CityInfo(String zipCode, String city)
+    {
+        this.zipCode = zipCode;
+        this.city = city;
+    }
 
     public Long getId()
     {
@@ -34,6 +48,26 @@ public class CityInfo implements Serializable
     public void setId(Long id)
     {
         this.id = id;
+    }
+    
+    public String getZipCode()
+    {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode)
+    {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity()
+    {
+        return city;
+    }
+
+    public void setCity(String city)
+    {
+        this.city = city;
     }
 
     @Override
@@ -64,28 +98,6 @@ public class CityInfo implements Serializable
     public String toString()
     {
         return "CityInfo{" + "id=" + id + ", zipCode=" + zipCode + ", city=" + city + '}';
-    }
-
-    
-
-    public String getZipCode()
-    {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode)
-    {
-        this.zipCode = zipCode;
-    }
-
-    public String getCity()
-    {
-        return city;
-    }
-
-    public void setCity(String city)
-    {
-        this.city = city;
     }
     
 }
