@@ -30,7 +30,7 @@ public class FacadePerson
         try
         {
            em.getTransaction().begin();
-           p = em.find(Person.class , );
+           p = em.find(Person.class, id);
            em.getTransaction().commit();
            return p;
         }
