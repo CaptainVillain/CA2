@@ -16,16 +16,16 @@ import javax.persistence.Id;
  * @author Kristian
  */
 @Entity
-public class Person implements Serializable
+public class Address implements Serializable
 {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String email;
-    private String firstName;
-    private String lastName;
+    private String street;
+    private String additionalInfo;
+    
 
     public Long getId()
     {
@@ -49,11 +49,11 @@ public class Person implements Serializable
     public boolean equals(Object object)
     {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person))
+        if (!(object instanceof Address))
         {
             return false;
         }
-        Person other = (Person) object;
+        Address other = (Address) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
         {
             return false;
@@ -64,7 +64,7 @@ public class Person implements Serializable
     @Override
     public String toString()
     {
-        return "renameMe.Person[ id=" + id + " ]";
+        return "entity.Address[ id=" + id + " ]";
     }
     
 }
