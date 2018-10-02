@@ -40,7 +40,7 @@ public class Phone implements Serializable
     public int hashCode()
     {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (getId() != null ? getId().hashCode() : 0);
         return hash;
     }
 
@@ -53,7 +53,7 @@ public class Phone implements Serializable
             return false;
         }
         Phone other = (Phone) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id)))
         {
             return false;
         }
@@ -63,7 +63,27 @@ public class Phone implements Serializable
     @Override
     public String toString()
     {
-        return "entity.Phone[ id=" + id + " ]";
+        return "entity.Phone[ id=" + getId() + " ]";
+    }
+
+    public String getNumber()
+    {
+        return number;
+    }
+
+    public void setNumber(String number)
+    {
+        this.number = number;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
     }
     
 }

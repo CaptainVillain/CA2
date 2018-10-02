@@ -6,10 +6,12 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -25,6 +27,8 @@ public class Hobby implements Serializable
     private Long id;
     private String name;
     private String description;
+    @ManyToMany
+    private List<Person> people;
 
     public Long getId()
     {
@@ -64,6 +68,36 @@ public class Hobby implements Serializable
     public String toString()
     {
         return "entity.Hobby[ id=" + id + " ]";
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public List<Person> getPeople()
+    {
+        return people;
+    }
+
+    public void setPeople(List<Person> people)
+    {
+        this.people = people;
     }
     
 }

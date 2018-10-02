@@ -40,7 +40,7 @@ public class CityInfo implements Serializable
     public int hashCode()
     {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (getId() != null ? getId().hashCode() : 0);
         return hash;
     }
 
@@ -53,7 +53,7 @@ public class CityInfo implements Serializable
             return false;
         }
         CityInfo other = (CityInfo) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id)))
         {
             return false;
         }
@@ -63,7 +63,27 @@ public class CityInfo implements Serializable
     @Override
     public String toString()
     {
-        return "entity.CityInfo[ id=" + id + " ]";
+        return "entity.CityInfo[ id=" + getId() + " ]";
+    }
+
+    public String getZipCode()
+    {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode)
+    {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity()
+    {
+        return city;
+    }
+
+    public void setCity(String city)
+    {
+        this.city = city;
     }
     
 }

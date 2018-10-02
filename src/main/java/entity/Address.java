@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -25,7 +26,8 @@ public class Address implements Serializable
     private Long id;
     private String street;
     private String additionalInfo;
-    
+    @ManyToOne
+    private CityInfo city;
 
     public Long getId()
     {
@@ -41,7 +43,7 @@ public class Address implements Serializable
     public int hashCode()
     {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (getId() != null ? getId().hashCode() : 0);
         return hash;
     }
 
@@ -54,7 +56,7 @@ public class Address implements Serializable
             return false;
         }
         Address other = (Address) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)))
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id)))
         {
             return false;
         }
@@ -64,7 +66,37 @@ public class Address implements Serializable
     @Override
     public String toString()
     {
-        return "entity.Address[ id=" + id + " ]";
+        return "entity.Address[ id=" + getId() + " ]";
+    }
+
+    public String getStreet()
+    {
+        return street;
+    }
+
+    public void setStreet(String street)
+    {
+        this.street = street;
+    }
+
+    public String getAdditionalInfo()
+    {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo)
+    {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public CityInfo getCity()
+    {
+        return city;
+    }
+
+    public void setCity(CityInfo city)
+    {
+        this.city = city;
     }
     
 }

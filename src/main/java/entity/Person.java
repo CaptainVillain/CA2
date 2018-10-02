@@ -6,10 +6,13 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,10 +29,70 @@ public class Person implements Serializable
     private String email;
     private String firstName;
     private String lastName;
+    @ManyToMany
+    private List<Hobby> hobbies;
+    @OneToMany
+    private List<Phone> phones;
 
     public Long getId()
     {
         return id;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
+    }
+
+    public List<Hobby> getHobbies()
+    {
+        return hobbies;
+    }
+
+    public void setHobbies(List<Hobby> hobbies)
+    {
+        this.hobbies = hobbies;
+    }
+
+    public List<Phone> getPhones()
+    {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones)
+    {
+        this.phones = phones;
+    }
+
+    public Person(String firstName, String lastName)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public void setId(Long id)
@@ -64,7 +127,7 @@ public class Person implements Serializable
     @Override
     public String toString()
     {
-        return "renameMe.Person[ id=" + id + " ]";
+        return "entity.Person[ id=" + id + " ]";
     }
     
 }
