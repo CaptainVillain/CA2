@@ -7,9 +7,12 @@ package facade;
 
 import dto.CityInfoDTO;
 import entity.CityInfo;
+import entity.Person;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 /**
  *
@@ -38,5 +41,41 @@ public class FacadeCity
         {
             em.close();
         }
+    }
+    public List<Person> getPersonsByZip(String zipcode)
+    {
+        EntityManager em = emf.createEntityManager();
+        try
+        {
+           em.getTransaction().begin();
+           
+           Query pbz = em.createQuery("Select p from Person p join p.address a where a.cityInfo.zipCode=:zipcode");
+           pbz.setParameter("zipcode", zipcode);
+           List<Person> persons = pbz.getResultList();
+           em.getTransaction().commit();
+           return persons;
+        }finally
+        {
+            em.close();
+        }
+        
+    }
+     public CityInfo getCityInfoId(Long id)
+    {
+        EntityManager em = emf.createEntityManager();
+        
+        CityInfo c = null;
+        try
+        {
+            em.getTransaction().begin();
+            c = em.find(CityInfo.class, id);
+            em.getTransaction().commit();
+            return c;
+        }
+        finally
+        {
+            em.close();
+        }
+
     }
 }
