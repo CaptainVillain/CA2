@@ -10,6 +10,7 @@ import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -20,11 +21,87 @@ public class FacadePerson
 {
 
     EntityManagerFactory emf;
+    
+    EntityManager em;
 
     public FacadePerson(EntityManagerFactory emf)
     {
         this.emf = emf;
     }
+    
+    
+    public Person getPersonPhone(String phone) 
+    {
+        em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Query q = em.createQuery("SELECT p FROM Person p WHERE p.phones.number = :phone");
+            q.setParameter("phone", phone);
+            em.getTransaction().commit();
+            Person person = (Person) q.getSingleResult();
+            return person;
+        } finally {
+            em.close();
+        }
+    }
+    
+    public List<Person> getPersonsByHobby(long id) 
+    {
+        em = emf.createEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+            Query q;
+            q = em.createQuery("SELECT p FROM Person p, Hobby h WHERE h.id = :id");
+            q.setParameter("id", id);
+            em.getTransaction().commit();
+            List<Long> hobbyList = q.getResultList();
+            List<Person> persList = null;
+            for(int i = 0;i<hobbyList.size()-1;i++)
+            {
+                q = em.createNativeQuery("SELECT * FROM person WHERE id = :id");
+                q.setParameter("id", hobbyList.get(i));
+                em.getTransaction().commit();
+                persList.add((Person) q.getSingleResult());
+            }
+            return persList;
+        } finally {
+            em.close();
+        }
+    }
+    
+    public int getPersonCountByHobby(long id) 
+    {
+        em = emf.createEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+            Query q;
+            q = em.createNativeQuery("SELECT * FROM person_hobby WHERE hobbies_id = :id");
+            q.setParameter("id", id);
+            em.getTransaction().commit();
+            List<Long> hobbyList = q.getResultList();
+            return hobbyList.size();
+        } finally {
+            em.close();
+        }
+    }
+    //VOID IS TEMP
+    public void getPersonsCity(String city)
+    {
+        try {
+            em.getTransaction().begin();
+            Query q;
+            q = em.createNativeQuery("SELECT * FROM person_hobby WHERE hobbies_id = :id");
+            q.setParameter("city", city);
+            em.getTransaction().commit();
+            
+        } finally {
+            em.close();
+        }
+    }
+    
+    
 
 //    public PersonDTO getPerson(Long id)
 //    {
