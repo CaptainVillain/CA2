@@ -6,6 +6,8 @@ public class main
 {
     public static void main(String[] args)
     {
-        Persistence.generateSchema("Ca2PU", null);
+     
+        Persistence.generateSchema("pu", null);
+        //Persistence.generateSchema("Ca2PU", null);
     }
 }
