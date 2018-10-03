@@ -59,6 +59,7 @@ public class FacadePerson
             List<Person> persList = null;
             for(int i = 0;i<hobbyList.size()-1;i++)
             {
+                
                 q = em.createNativeQuery("SELECT * FROM person WHERE id = :id");
                 q.setParameter("id", hobbyList.get(i));
                 em.getTransaction().commit();
@@ -90,6 +91,7 @@ public class FacadePerson
     public void getPersonsCity(String city)
     {
         try {
+            //NOT DONE
             em.getTransaction().begin();
             Query q;
             q = em.createNativeQuery("SELECT * FROM person_hobby WHERE hobbies_id = :id");
