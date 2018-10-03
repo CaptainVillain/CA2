@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,12 +25,15 @@ public class Address implements Serializable
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String street;
     private String additionalInfo;
+    
     @ManyToOne
-    private CityInfo city;
+    private CityInfo cityInfo;
+    
+    
     
     public Address(){}
 
@@ -62,13 +66,16 @@ public class Address implements Serializable
         this.additionalInfo = additionalInfo;
     }
 
-    public CityInfo getCity() {
-        return city;
+    public CityInfo getCityInfo()
+    {
+        return cityInfo;
     }
 
-    public void setCity(CityInfo city) {
-        this.city = city;
+    public void setCityInfo(CityInfo cityInfo)
+    {
+        this.cityInfo = cityInfo;
     }
+    
    
     @Override
     public int hashCode(){
@@ -93,7 +100,10 @@ public class Address implements Serializable
     }
 
     @Override
-    public String toString(){
-        return "Address{" + "id=" + id + ", street=" + street + ", additionalInfo=" + additionalInfo + ", city=" + city + '}';
+    public String toString()
+    {
+        return "Address{" + "id=" + id + ", street=" + street + ", additionalInfo=" + additionalInfo + ", cityInfo=" + cityInfo + '}';
     }
+
+
 }
