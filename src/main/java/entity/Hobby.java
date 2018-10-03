@@ -28,8 +28,11 @@ public class Hobby implements Serializable {
     private Long id;
     private String name;
     private String description;
-    @ManyToMany
-    private List<Person> people;
+    
+    @ManyToMany(mappedBy = "hobbies")
+    private List<Person> persons;
+
+    
 
     public Hobby() {
 
@@ -64,13 +67,20 @@ public class Hobby implements Serializable {
         this.description = description;
     }
 
-    public List<Person> getPeople() {
-        return people;
+    public List<Person> getPersons()
+    {
+        return persons;
     }
 
-    public void setPeople(List<Person> people) {
-        this.people = people;
+    public void setPersons(List<Person> persons)
+    {
+        this.persons = persons;
     }
+    public void addPerson(Person p)
+    {
+        this.persons.add(p);
+    }
+
 
     @Override
     public int hashCode() {
@@ -93,8 +103,11 @@ public class Hobby implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Hobby{" + "id=" + id + ", name=" + name + ", description=" + description + ", people=" + people + '}';
+    public String toString()
+    {
+        return "Hobby{" + "id=" + id + ", name=" + name + ", description=" + description + ", persons=" + persons + '}';
     }
+
+
 
 }

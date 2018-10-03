@@ -33,10 +33,14 @@ public class Person implements Serializable {
     private String email;
     private String firstName;
     private String lastName;
+
     @ManyToMany
-    private List<Hobby> hobbies;
+    private List<Hobby> hobbies = new ArrayList();
+    
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<Phone> phones = new ArrayList();
+    
+    
     @ManyToOne
     private Address address;
 
@@ -85,6 +89,10 @@ public class Person implements Serializable {
 
     public void setHobbies(List<Hobby> hobbies) {
         this.hobbies = hobbies;
+    }
+    public void addHobbies(Hobby h)
+    {
+        this.hobbies.add(h);
     }
 
     public Address getAddress() {
