@@ -5,6 +5,7 @@
  */
 package facade;
 
+import dto.CityInfoDTO;
 import entity.CityInfo;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -23,14 +24,14 @@ public class FacadeCity
         this.emf = emf;
     }
     
-    public List<CityInfo> getZipCode()
+    public List<CityInfoDTO> getZipCodes()
     {
         EntityManager em = emf.createEntityManager();
-        List<CityInfo> zipcodes = null;
+        List<CityInfoDTO> zipcodes = null;
         try
         {
            em.getTransaction().begin();
-           zipcodes = em.createQuery("Select c from CityInfo c").getResultList();
+           zipcodes = em.createQuery("Select c.zipCode from CityInfo c",CityInfoDTO.class).getResultList();
            em.getTransaction().commit();
            return zipcodes;
         }finally

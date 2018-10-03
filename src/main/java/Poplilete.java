@@ -18,15 +18,15 @@ public class Poplilete
 {
     public static void main(String[] args)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ca2PU");
-        EntityManager em = emf.createEntityManager();
-        
-        em.getTransaction().begin();
-        Person p1 = new Person("");
-        p1 = ("")
-        
-        
-        em.getTransaction().commit();
-        em.close();
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+//        EntityManager em = emf.createEntityManager();
+//        
+//        em.getTransaction().begin();
+//        Person p1 = new Person("");
+//        p1 = ("")
+//        
+//        
+//        em.getTransaction().commit();
+//        em.close();
     }
 }
