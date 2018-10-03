@@ -35,7 +35,8 @@ public class FacadePerson
         em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Query q = em.createQuery("SELECT p FROM Person p WHERE p.phones.number = :phone");
+            //Query q = em.createQuery("SELECT p FROM Person p, Phone ph WHERE ph.number = :phone");
+            Query q = em.createQuery("SELECT p FROM Person p JOIN p.phones ph WHERE ph.number = :phone");
             q.setParameter("phone", phone);
             em.getTransaction().commit();
             Person person = (Person) q.getSingleResult();
@@ -52,7 +53,8 @@ public class FacadePerson
         try {
             em.getTransaction().begin();
             Query q;
-            q = em.createQuery("SELECT p FROM Person p, Hobby h WHERE h.id = :id");
+            //q = em.createQuery("SELECT p FROM Person p, Hobby h WHERE h.id = :id");
+            q = em.createQuery("SELECT p FROM Person p JOIN p.hobbies h WHERE h.id = :id");
             q.setParameter("id", id);
             em.getTransaction().commit();
             List<Long> hobbyList = q.getResultList();
@@ -60,7 +62,7 @@ public class FacadePerson
             for(int i = 0;i<hobbyList.size()-1;i++)
             {
                 
-                q = em.createNativeQuery("SELECT * FROM person WHERE id = :id");
+                q = em.createQuery("SELECT p FROM Person p WHERE p.id = :id");
                 q.setParameter("id", hobbyList.get(i));
                 em.getTransaction().commit();
                 persList.add((Person) q.getSingleResult());
@@ -78,26 +80,12 @@ public class FacadePerson
         try {
             em.getTransaction().begin();
             Query q;
-            q = em.createNativeQuery("SELECT * FROM person_hobby WHERE hobbies_id = :id");
+            //q = em.createQuery("SELECT p FROM Person p, Hobby h WHERE h.id = :id");
+            q = em.createQuery("SELECT p FROM Person p JOIN p.hobbies h WHERE h.id = :id");
             q.setParameter("id", id);
             em.getTransaction().commit();
             List<Long> hobbyList = q.getResultList();
             return hobbyList.size();
-        } finally {
-            em.close();
-        }
-    }
-    //VOID IS TEMP
-    public void getPersonsCity(String city)
-    {
-        try {
-            //NOT DONE
-            em.getTransaction().begin();
-            Query q;
-            q = em.createNativeQuery("SELECT * FROM person_hobby WHERE hobbies_id = :id");
-            q.setParameter("city", city);
-            em.getTransaction().commit();
-            
         } finally {
             em.close();
         }
