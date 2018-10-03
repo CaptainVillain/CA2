@@ -41,6 +41,12 @@ public class CityInfo implements Serializable {
     public CityInfo() {
     }
 
+    public CityInfo(Long id)
+    {
+        this.id = id;
+    }
+    
+    
     public CityInfo(String zipCode, String city) {
         this.zipCode = zipCode;
         this.city = city;
