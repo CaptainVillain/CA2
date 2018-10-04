@@ -7,8 +7,10 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dto.PersonDTO;
 import entity.Person;
 import facade.FacadePerson;
+import java.util.List;
 import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -33,7 +35,7 @@ public class RestPerson {
     @Context
     private UriInfo context;
     private Gson gson;
-    private FacadePerson fp = new FacadePerson(Persistence.createEntityManagerFactory("pu"));
+    private facade.FacadePerson fp = new FacadePerson(Persistence.createEntityManagerFactory("Ca2PU"));
 
     /**
      * Creates a new instance of RestPerson
@@ -79,11 +81,12 @@ public class RestPerson {
     @Path("complete")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getJson() {
+    public String getJson() {
 
-        String json = gson.toJson(fp.getAllPerson());
+        List<PersonDTO> p = fp.getAllPersons();
+        return JsonCon.getJSONFromPerson(p);
 
-        return Response.ok(json).build();
+        
     }
 
     @Path("complete/id")
@@ -130,17 +133,17 @@ public class RestPerson {
         return Response.ok(json).build();
     }
 
-    @Path("count/id")
-    @GET
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getJson2(String name) {
+//    @Path("count/id")
+//    @GET
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getJson2(String name) {
+//
+//        String json = gson.toJson(fp.getPersonCountByHobby(name));
+//
+//        return Response.ok(json).build();
+//    }
 
-        String json = gson.toJson(fp.getPersonCountByHobby(name));
-
-        return Response.ok(json).build();
-    }
-s
 
     /**
      * PUT method for updating or creating an instance of RestPerson
