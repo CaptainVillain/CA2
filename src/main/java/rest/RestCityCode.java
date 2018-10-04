@@ -30,7 +30,7 @@ public class RestCityCode {
     @Context
     private UriInfo context;
     private Gson gson;
-    private facade.FacadeCity fc = new FacadeCity(Persistence.createEntityManagerFactory("pu"));
+    private facade.FacadeCity fc = new FacadeCity(Persistence.createEntityManagerFactory("Ca2PU"));
 
     /**
      * Creates a new instance of RestCityCode

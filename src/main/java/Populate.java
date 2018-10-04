@@ -25,7 +25,7 @@ public class Populate
         
         Persistence.generateSchema("Ca2PU", null);
         
-        
+ 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ca2PU");
         EntityManager em = emf.createEntityManager();
         
@@ -44,6 +44,6 @@ public class Populate
         FacadeCity fc = new FacadeCity(Persistence.createEntityManagerFactory("Ca2PU"));
         System.out.println(fc.getPersonsByZip("0555"));
         
-        System.out.println(fc.getCityInfoId(1l).getCity());
+//        System.out.println(fc.getCityInfoId(1l).getCity());
     }
 }
