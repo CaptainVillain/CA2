@@ -31,6 +31,7 @@ public class Generator
 
         ArrayList<String> first = Generator.genFirstName();
         ArrayList<String> last = Generator.genLastName();
+        ArrayList<String> emailList = Generator.genEmail();
 
         List<Hobby> hobbies = Generator.genHobbies();
 
@@ -45,9 +46,11 @@ public class Generator
 
             String firstName = first.get((int) (Math.random() * first.size()));
             String lastName = last.get((int) (Math.random() * last.size()));
-            String email = null;
-            Address address = null;
-
+            String email = emailList.get((int) (Math.random() * emailList.size()));
+            String street = streets.get((int) (Math.random() * streets.size()));
+            String info = addressInfo.get((int) (Math.random() * addressInfo.size()));
+            CityInfo cityInfo = cityList.get((int) (Math.random() * cityList.size()));
+            Address address = new Address(street, info, cityInfo);
             Person person = new Person(email, firstName, lastName, address);
 
             for (int j = 0; j <= (int) (Math.random() * 5); j++)
@@ -57,12 +60,6 @@ public class Generator
 
             person.addHobby(hobbies.get((int) (Math.random() * hobbies.size())));
 
-            String street = streets.get((int) (Math.random() * streets.size()));
-            String info = addressInfo.get((int) (Math.random() * addressInfo.size()));
-
-            CityInfo cityInfo = cityList.get((int) (Math.random() * cityList.size()));
-            address = new Address(street, info, cityInfo);
-            person.setAddress(address);
 
             em.persist(person);
             em.getTransaction().commit();
@@ -160,6 +157,17 @@ public class Generator
         {
             em.close();
         }
+    }
+    
+    public static ArrayList<String> genEmail()
+    {
+        ArrayList<String> email = new ArrayList<String>();
+        email.add("et@mail.dk");
+        email.add("to@mail.dk");
+        email.add("tre@mail.dk");
+        email.add("fire@mail.dk");
+        email.add("fem@mail.dk");
+        return email;
     }
 
 }
