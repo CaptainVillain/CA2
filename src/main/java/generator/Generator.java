@@ -28,42 +28,42 @@ public class Generator
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ca2PU");
         EntityManager em = emf.createEntityManager();
-        
+
         ArrayList<String> first = Generator.genFirstName();
         ArrayList<String> last = Generator.genLastName();
-        
+
         List<Hobby> hobbies = Generator.genHobbies();
-        
+
         ArrayList<String> streets = Generator.genStreetNames();
         ArrayList<String> addressInfo = Generator.genAdditionalInfo();
-        
+
         List<CityInfo> cityList = Generator.getCityInfo();
-        
+
         for (int i = 0; i < amount; i++)
         {
             em.getTransaction().begin();
-            
+
             String firstName = first.get((int) (Math.random() * first.size()));
             String lastName = last.get((int) (Math.random() * last.size()));
             String email = null;
             Address address = null;
-            
+
             Person person = new Person(email, firstName, lastName, address);
-            
+
             for (int j = 0; j <= (int) (Math.random() * 5); j++)
             {
                 person.addPhone(new Phone(Generator.genPhone(), "Who this?"));
             }
-            
+
             person.addHobby(hobbies.get((int) (Math.random() * hobbies.size())));
-            
+
             String street = streets.get((int) (Math.random() * streets.size()));
             String info = addressInfo.get((int) (Math.random() * addressInfo.size()));
-            
+
             CityInfo cityInfo = cityList.get((int) (Math.random() * cityList.size()));
-            address = new Address(street,info,cityInfo);
+            address = new Address(street, info, cityInfo);
             person.setAddress(address);
-            
+
             em.persist(person);
             em.getTransaction().commit();
         }
@@ -106,11 +106,11 @@ public class Generator
     private static List<Hobby> genHobbies()
     {
         List<Hobby> hobbies = new ArrayList();
-        hobbies.add(new Hobby("Skydning","På bane/i klub"));
-        hobbies.add(new Hobby("Alkoholiker","Dagligt indtag af store mængder alkohol"));
-        hobbies.add(new Hobby("Golf","Slå til lille bold på kæmpe græsplæne"));
-        hobbies.add(new Hobby("Jagt","Alle slags"));
-        hobbies.add(new Hobby("Svømning","..."));
+        hobbies.add(new Hobby("Skydning", "På bane/i klub"));
+        hobbies.add(new Hobby("Alkoholiker", "Dagligt indtag af store mængder alkohol"));
+        hobbies.add(new Hobby("Golf", "Slå til lille bold på kæmpe græsplæne"));
+        hobbies.add(new Hobby("Jagt", "Alle slags"));
+        hobbies.add(new Hobby("Svømning", "..."));
         return hobbies;
     }
 
