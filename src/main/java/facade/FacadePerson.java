@@ -5,7 +5,9 @@
  */
 package facade;
 
+import dto.PersonDTO;
 import entity.Person;
+import java.util.ArrayList;
 //import entity.PersonDTO;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -151,8 +153,21 @@ public class FacadePerson
 //        }
 //    }
 
-    public Object getAllPerson() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<PersonDTO> getAllPersons() {
+        EntityManager em = emf.createEntityManager();
+        List<PersonDTO> persons = new ArrayList();
+        try
+        {
+            em.getTransaction().begin();
+            persons = em.createQuery("Select new dto.PersonDTO(p.email, p.firstName, p.lastName) from Person p").getResultList();
+            em.getTransaction().commit();
+            return persons;
+        }
+        finally
+        {
+            em.close();
+        }
+         
     }
 
     public Object getPersonsById(long id) {
