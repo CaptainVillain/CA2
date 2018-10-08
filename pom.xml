@@ -70,6 +70,7 @@
                 <version>2.3</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warName>Ca2</warName>
                 </configuration>
             </plugin>
             <plugin>

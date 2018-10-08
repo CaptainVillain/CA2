@@ -155,13 +155,16 @@ public class FacadePerson
 
     public List<PersonDTO> getAllPersons() {
         EntityManager em = emf.createEntityManager();
-        List<PersonDTO> persons = new ArrayList();
         try
         {
             em.getTransaction().begin();
-            persons = em.createQuery("Select new dto.PersonDTO(p.email, p.firstName, p.lastName) from Person p").getResultList();
+            List<Person> persons = em.createQuery("Select p from Person p").getResultList();
             em.getTransaction().commit();
-            return persons;
+            List<PersonDTO> personsDTO = new ArrayList<>();
+            for(Person p: persons){
+                personsDTO.add(new PersonDTO(p.getEmail(), p.getFirstName(), p.getLastName()));
+            }
+            return personsDTO;
         }
         finally
         {
